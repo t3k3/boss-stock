@@ -1,5 +1,5 @@
 # boss-stock
-Boss Stock Application for Phone Stores
+Boss Stock Inventory Management Application for Phone Stores
 
 
 Telefoncular için stok takip uygulaması
