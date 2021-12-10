@@ -5,19 +5,19 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-type Todo struct {
+type Product struct {
 	ID    int    `json:"id"`
 	Name  string `json:"name"`
 	Price string `json:"price"`
 }
 
-var todos = []Todo{
+var products = []Product{
 	{ID: 1, Name: "Sarj Aleti", Price: "120,00 TL"},
 	{ID: 2, Name: "Kilif", Price: "75,00 TL"},
 }
 
-func getTodo(c *fiber.Ctx) error {
-	return c.Status(fiber.StatusOK).JSON(todos)
+func getProduct(c *fiber.Ctx) error {
+	return c.Status(fiber.StatusOK).JSON(products)
 }
 
 func main() {
@@ -26,9 +26,9 @@ func main() {
 	app.Use(logger.New())
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+		return c.SendString("Boss Stock!")
 	})
-	app.Get("/api", getTodo)
+	app.Get("/api", getProduct)
 
 	app.Listen(":3001")
 }
