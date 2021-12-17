@@ -1,7 +1,7 @@
 package product
 
 import (
-	"bookmark-api-fiber/database"
+	"boss-stock/database"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -35,8 +35,8 @@ func SaveProduct(c *fiber.Ctx) error {
 		})
 		return err
 	}
-
-	result, err := database.CreateProduct(newProduct.Name, newProduct.Url)
+	//TODO: Edit Product Attributes
+	result, err := database.CreateProduct(newProduct.Name, newProduct.Price)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,

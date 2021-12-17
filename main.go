@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bookmark-api-fiber/database"
-	"bookmark-api-fiber/product"
+	"boss-stock/database"
+	"boss-stock/product"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -14,7 +14,7 @@ func status(c *fiber.Ctx) error {
 func setupRoutes(app *fiber.App) {
 
 	app.Get("/", status)
-
+	//TODO: Edit Endpoints
 	app.Get("/api/v1/product", product.GetAllProducts)
 	app.Post("/api/v1/product", product.SaveProduct)
 }

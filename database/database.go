@@ -5,10 +5,11 @@ import (
 	"gorm.io/gorm"
 )
 
+//TODO: Edit Product Attributes
 type Product struct {
 	gorm.Model
-	Name string `json:"name"`
-	Url  string `json:"url"`
+	Name  string `json:"name"`
+	Price string `json:"price"`
 }
 
 func InitDatabase() error {
@@ -35,14 +36,19 @@ func GetAllProducts() ([]Product, error) {
 	return products, nil
 }
 
-func CreateProduct(name string, url string) (Product, error) {
-	var newProduct = Product{Name: name, Url: url}
+//TODO: Edit Product Attributes
+func CreateProduct(name string, price string) (Product, error) {
+	var newProduct = Product{Name: name, Price: price}
 
 	db, err := gorm.Open(sqlite.Open("product.db"), &gorm.Config{})
 	if err != nil {
 		return newProduct, err
 	}
-	db.Create(&Product{Name: name, Url: url})
+	db.Create(&Product{Name: name, Price: price})
 
 	return newProduct, nil
 }
+
+//TODO: Add DeleteProducts
+//TODO: Update Products
+//TODO: Sell Products

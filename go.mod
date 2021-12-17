@@ -1,4 +1,4 @@
-module bookmark-api-fiber
+module boss-stock
 
 go 1.17
 
