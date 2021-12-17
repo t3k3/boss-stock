@@ -1,34 +1,32 @@
 package main
 
 import (
+	"bookmark-api-fiber/database"
+	"bookmark-api-fiber/product"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-type Product struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Price string `json:"price"`
+func status(c *fiber.Ctx) error {
+	return c.SendString("Server is running! Send your request")
 }
 
-var products = []Product{
-	{ID: 1, Name: "Sarj Aleti", Price: "120,00 TL"},
-	{ID: 2, Name: "Kilif", Price: "75,00 TL"},
-}
+func setupRoutes(app *fiber.App) {
 
-func getProduct(c *fiber.Ctx) error {
-	return c.Status(fiber.StatusOK).JSON(products)
+	app.Get("/", status)
+
+	app.Get("/api/v1/product", product.GetAllProducts)
+	app.Post("/api/v1/product", product.SaveProduct)
 }
 
 func main() {
-
 	app := fiber.New()
-	app.Use(logger.New())
+	dbErr := database.InitDatabase()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Boss Stock!")
-	})
-	app.Get("/api", getProduct)
+	if dbErr != nil {
+		panic(dbErr)
+	}
 
-	app.Listen(":3001")
+	setupRoutes(app)
+	app.Listen(":3000")
 }
