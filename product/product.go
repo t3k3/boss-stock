@@ -36,7 +36,7 @@ func SaveProduct(c *fiber.Ctx) error {
 		return err
 	}
 	//TODO: Edit Product Attributes
-	result, err := database.CreateProduct(newProduct.Name, newProduct.Price)
+	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.Store_ID, newProduct.Caregory_ID, newProduct.Entry_Price)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,
