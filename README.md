@@ -85,13 +85,6 @@ fmt.Println(err.Error())
 }
 ```
 
-```
-func WriteToScreen(e Southwind.Employee) {
-    fmt.Printf("%d\t%s,%s,%s\n", e.ID, e.FirstName, e.LastName, e.CreatedAt)
-    for _, email := range e.Emails {
-        fmt.Printf("\t%d:%s\n", email.ID, email.Mail)
-    }
-}
-```
+
 
 
