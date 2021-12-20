@@ -14,7 +14,7 @@ type Product struct {
 	Quantity    int     `json:"quantity"`    //Stok Adet
 	Barcode     uint    `json:"barcode"`     //Barcode numarası
 	Store_ID    uint    `json:"store_id"`    //Mağaza ID, ürünün hangi mağazaya ait olduğu (BAKILACAK)
-	Caregory_ID uint    `json:"category_id"` //Ürünün kaegorisi
+	Category_id uint    `json:"category_id"` //Ürünün kaegorisi
 	Entry_Price float64 `json:"entry_price"` //Alış fiyatı
 }
 
@@ -40,4 +40,21 @@ type Repair struct {
 	Color           string  `json:"color"`           //Cihaz rengi
 	Diagnosis       string  `json:"diagnosis"`       //Cihaza konan tanılar belirlenmiş arızalar
 	Sms             bool    `json:"sms"`             //SMS gonderilsin mi?
+}
+
+//TODO: implemente edilecek
+type Category struct {
+	gorm.Model
+	Category_name string `json:"categoty_name"`
+	Sub_categoty  string `json:"sub_category"`
+}
+
+//TODO: implemente edilecek
+type Order struct {
+	gorm.Model
+	Product_id     string  `json:"product_id"`
+	Price          float64 `json:"price"`          //Satış fiyatı
+	Quantity       int     `json:"quantity"`       //Satış Adet
+	Barcode        uint    `json:"barcode"`        //Barcode numaraları
+	Payment_method float64 `json:"payment_method"` //Alış fiyatı
 }

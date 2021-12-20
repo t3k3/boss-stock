@@ -30,6 +30,11 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/api/v1/repair", controller.GetAllRepairs)
 	//Eger /api/v1/repair endpointine POST istegi gelirse product.go icinden SaveRepair() fonksiyonunu response et.
 	app.Post("/api/v1/repair/new", controller.SaveRepair)
+
+	//Eger /api/v1/store endpointine GET istegi gelirse store.go icinden GetAllStores() fonksiyonunu response et.
+	app.Get("/api/v1/store", controller.GetAllStores)
+	//Eger /api/v1/repair endpointine POST istegi gelirse product.go icinden SaveStore() fonksiyonunu response et.
+	app.Post("/api/v1/store/new", controller.SaveStore)
 }
 
 func main() {
