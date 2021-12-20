@@ -2,6 +2,7 @@ package controller
 
 import (
 	"boss-stock/database"
+	"boss-stock/model"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -29,7 +30,7 @@ func GetAllRepairs(c *fiber.Ctx) error {
 //Burada SaveRepair() metodu tanimlaniyor
 func SaveRepair(c *fiber.Ctx) error {
 	//newRepair degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
-	newRepair := new(database.Repair)
+	newRepair := new(model.Repair)
 	//newRepair ile gelen veri BodyParser ie parse ediliyor.
 	err := c.BodyParser(newRepair)
 	if err != nil {
