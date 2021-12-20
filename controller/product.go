@@ -1,4 +1,4 @@
-package product
+package controller
 
 import (
 	"boss-stock/database"
