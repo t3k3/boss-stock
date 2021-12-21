@@ -2,34 +2,39 @@
 
 ## Boss Stock Inventory Management Application for Phone Stores
 
-  
-
 ## Telefoncular için stok takip uygulaması
 
   
 
 ### Endpoints:
 
-`app.Get("/", status)`
+BASE_URL : http://<ip_address>:3000/api/v1/
+BASE_PORT : 3000
+
+`app.Get("/", status)` //API status
 
 //TODO: Edit Endpoints
 
-`app.Get("/api/v1/product", product.GetAllProducts)`
+### Ürün Listele
+`BASE_URL:3000/api/v1/product`
+### Ürün Ekle
+`BASE_URL:3000/api/v1/product/new`
 
-`app.Post("/api/v1/product", product.SaveProduct)`
+### Tamirdeki Cihazları Listele
+`BASE_URL:3000/api/v1/repair"`
+### Tamir İçin Cihaz Ekle
+`BASE_URL:3000/api/v1/repair/new`
 
+### Mevcut Mağazaları Getir
+`BASE_URL:3000/api/v1/store`
+### Yeni Mağaza Ekle
+`BASE_URL:3000/api/v1/store/new`
   
   
 
-### Address:
-
-`127.0.0.1:3000/api/v1/product`
-
-`app.Listen(":3000")`
-
   
 
-Repo clone sonrası aşağıdaki çalıştır.
+Repo clone sonrası aşağıdakileri çalıştır.
 
   
 
@@ -55,7 +60,7 @@ Repo clone sonrası aşağıdaki çalıştır.
 
 
 
-
+### NOTLAR
 gorm.Find 
 gorm.Model
 
