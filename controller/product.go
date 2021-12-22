@@ -3,12 +3,16 @@ package controller
 import (
 	"boss-stock/database"
 	"boss-stock/model"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 //Tum urunleri listeleyen GetAllProducts() fonksiyonu tanimlaniyor.
 func GetAllProducts(c *fiber.Ctx) error {
+	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
+	fmt.Println(c.IP(), "\tGet All Product\t /api/v1/product")
+
 	//database.go dosyasindan GetAllProducts() fonksiyonu cagiriliyor.
 	result, err := database.GetAllProducts()
 	if err != nil {
@@ -29,6 +33,10 @@ func GetAllProducts(c *fiber.Ctx) error {
 
 //Burada SaveProduct() metodu tanimlaniyor
 func SaveProduct(c *fiber.Ctx) error {
+
+	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
+	fmt.Println(c.IP(), "\tSave New Product\t /api/v1/product/new")
+
 	//newProduct degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
 	newProduct := new(model.Product)
 	//newProduct ile gelen veri BodyParser ie parse ediliyor.
