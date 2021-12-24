@@ -45,8 +45,8 @@ type Repair struct {
 //TODO: implemente edilecek
 type Category struct {
 	gorm.Model
-	Category_name string `json:"categoty_name"`
-	Sub_categoty  string `json:"sub_category"`
+	Category_name string `json:"category_name"`
+	Sub_category  uint   `json:"sub_category"`
 }
 
 //TODO: implemente edilecek

@@ -17,7 +17,7 @@ func InitDatabase() error {
 	}
 
 	//gorm'a model dosyasından Product{} türünün verileri gonderiliyor AutoMigrate() ile veriler yaziliyor.
-	db.AutoMigrate(&model.Product{}, &model.Store{}, &model.Repair{})
+	db.AutoMigrate(&model.Product{}, &model.Store{}, &model.Repair{}, &model.Category{})
 
 	return nil
 }
@@ -107,6 +107,35 @@ func CreateStore(name string, logo string, manager string, tel uint, mail string
 	db.Create(&newStore)
 
 	return newStore, nil
+}
+
+//GetAllCategoryes() metodu tanimlaniyor parametre almiyor ancak Store turunde bir dizi return ediyor
+func GetAllCategoryes() ([]model.Category, error) {
+	//categories isimli Category turunden bir dizi tanimlaniyor
+	var categories []model.Category
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return categories, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz categories dizisi arguman geciliyor.
+	db.Find(&categories)
+
+	return categories, nil
+}
+
+//TODO: Edit Category Attributes
+func CreateCategory(category_name string, sub_category uint) (model.Category, error) {
+
+	var newCategory = model.Category{Category_name: category_name, Sub_category: sub_category}
+
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return newCategory, err
+	}
+	db.Create(&newCategory)
+
+	return newCategory, nil
 }
 
 //TODO: Add DeleteProducts
