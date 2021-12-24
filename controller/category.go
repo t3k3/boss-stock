@@ -36,7 +36,7 @@ func GetAllCategoryes(c *fiber.Ctx) error {
 func SaveCategory(c *fiber.Ctx) error {
 
 	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
-	fmt.Println(c.IP(), "\tSave New Category\t /api/v1/category/new")
+	fmt.Println(c.IP(), "\t", c.Path(), "\tSave New Category")
 
 	//newCategory degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
 	newCategory := new(model.Category)
