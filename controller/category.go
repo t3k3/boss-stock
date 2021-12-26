@@ -3,16 +3,12 @@ package controller
 import (
 	"boss-stock/database"
 	"boss-stock/model"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 //Tum urunleri listeleyen GetAllCategory() fonksiyonu tanimlaniyor.
 func GetAllCategoryes(c *fiber.Ctx) error {
-
-	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
-	fmt.Println(c.IP(), "\tGet All Category\t /api/v1/category")
 
 	//database.go dosyasindan GetAllCategory() fonksiyonu cagiriliyor.
 	result, err := database.GetAllCategoryes()
@@ -34,9 +30,6 @@ func GetAllCategoryes(c *fiber.Ctx) error {
 
 //Burada SaveCategory() metodu tanimlaniyor
 func SaveCategory(c *fiber.Ctx) error {
-
-	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
-	fmt.Println(c.IP(), "\t", c.Path(), "\tSave New Category")
 
 	//newCategory degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
 	newCategory := new(model.Category)

@@ -3,16 +3,12 @@ package controller
 import (
 	"boss-stock/database"
 	"boss-stock/model"
-	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 //Tum urunleri listeleyen GetAllRepairs() fonksiyonu tanimlaniyor.
 func GetAllRepairs(c *fiber.Ctx) error {
-
-	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
-	fmt.Println(c.IP(), "\tGet All Repairs\t /api/v1/repair")
 
 	//database.go dosyasindan GetAllRepairs() fonksiyonu cagiriliyor.
 	result, err := database.GetAllRepairs()
@@ -34,9 +30,6 @@ func GetAllRepairs(c *fiber.Ctx) error {
 
 //Burada SaveRepair() metodu tanimlaniyor
 func SaveRepair(c *fiber.Ctx) error {
-
-	//TODO: TEMP:Gelen istekleri terminalden takip etmek için geçici bir kod
-	fmt.Println(c.IP(), "\tSave New Repair\t /api/v1/repair/new")
 
 	//newRepair degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
 	newRepair := new(model.Repair)
