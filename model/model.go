@@ -13,7 +13,7 @@ type Product struct {
 	Price       float64 `json:"price"`       //Satış fiyatı
 	Quantity    int     `json:"quantity"`    //Stok Adet
 	Barcode     uint    `json:"barcode"`     //Barcode numarası
-	StoreID     uint    `json:"store_id"`    //Mağaza ID, ürünün hangi mağazaya ait olduğu (BAKILACAK)
+	StoreID     uint    `json:"store_id"`    //StoreID Foreign Key ???
 	CategoryID  uint    `json:"category_id"` //Ürünün kaegorisi
 	Entry_Price float64 `json:"entry_price"` //Alış fiyatı
 }
