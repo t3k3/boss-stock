@@ -13,18 +13,19 @@ type Product struct {
 	Price       float64 `json:"price"`       //Satış fiyatı
 	Quantity    int     `json:"quantity"`    //Stok Adet
 	Barcode     uint    `json:"barcode"`     //Barcode numarası
-	Store_ID    uint    `json:"store_id"`    //Mağaza ID, ürünün hangi mağazaya ait olduğu (BAKILACAK)
-	Category_id uint    `json:"category_id"` //Ürünün kaegorisi
+	StoreID     uint    `json:"store_id"`    //Mağaza ID, ürünün hangi mağazaya ait olduğu (BAKILACAK)
+	CategoryID  uint    `json:"category_id"` //Ürünün kaegorisi
 	Entry_Price float64 `json:"entry_price"` //Alış fiyatı
 }
 
 type Store struct {
 	gorm.Model
-	Name    string `json:"name"`
-	Logo    string `json:"logo"`
-	Manager string `json:"manager"` //Mağaza yetkilisi
-	Tel     uint   `json:"tel"`
-	Mail    string `json:"mail"`
+	Name     string `json:"name"`
+	Logo     string `json:"logo"`
+	Manager  string `json:"manager"` //Mağaza yetkilisi
+	Tel      uint   `json:"tel"`
+	Mail     string `json:"mail"`
+	Password string `json:"_"`
 }
 
 type Repair struct {

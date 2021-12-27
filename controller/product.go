@@ -13,7 +13,9 @@ func GetAllProducts(c *fiber.Ctx) error {
 	//database.go dosyasindan GetAllProducts() fonksiyonu cagiriliyor.
 	result, err := database.GetAllProducts()
 	if err != nil {
-		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini JSON olarak donduruyor
+		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
+		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//JSON olarak donduruyor
 		return c.Status(500).JSON(&fiber.Map{
 			"success": false,
 			"message": err,
@@ -45,7 +47,7 @@ func SaveProduct(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Product Attributes
 	//database.go dosyasindan CreatProduct() metoduna veriler parametre gecilerek cagri yapiliyor.
-	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.Store_ID, newProduct.Category_id, newProduct.Entry_Price)
+	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.StoreID, newProduct.CategoryID, newProduct.Entry_Price)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,
