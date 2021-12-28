@@ -2,7 +2,7 @@ package controller
 
 import (
 	"boss-stock/database"
-	"boss-stock/model"
+	"boss-stock/models"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -32,7 +32,7 @@ func GetAllStores(c *fiber.Ctx) error {
 func SaveStore(c *fiber.Ctx) error {
 
 	//newStore degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
-	newStore := new(model.Store)
+	newStore := new(models.Store)
 	//newStore ile gelen veri BodyParser ie parse ediliyor.
 	err := c.BodyParser(newStore)
 	if err != nil {

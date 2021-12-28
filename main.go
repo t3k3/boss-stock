@@ -49,8 +49,8 @@ func main() {
 	//nesnesi döndürür.
 	//InitDatabase() fonksiyonu GORM metodlarini cagiriyor database dosyasini aciyor ve migrate yapiyor.
 	//Eger dosya acilirsa database içinde tanımladığımız InitDatabase() fonksiyonu çalışacak.
-	//InitDatabase içinde AutoMigrate() metoduna verdiğimiz parametlere model içindeki gibi
-	//database tablolarını oluşturacak. (&model.Product{}, &model.Store{}, &model.Repair{}, &model.Category{})
+	//InitDatabase içinde AutoMigrate() metoduna verdiğimiz parametlere models içindeki gibi
+	//database tablolarını oluşturacak. (&models.Product{}, &models.Store{}, &models.Repair{}, &models.Category{})
 	dbErr := database.InitDatabase()
 
 	if dbErr != nil {

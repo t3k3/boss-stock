@@ -1,7 +1,7 @@
 package database
 
 import (
-	"boss-stock/model"
+	"boss-stock/models"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -17,15 +17,15 @@ func InitDatabase() error {
 	}
 
 	//gorm'a model dosyasından Product{} türünün verileri gonderiliyor AutoMigrate() ile veriler yaziliyor.
-	db.AutoMigrate(&model.Product{}, &model.Store{}, &model.Repair{}, &model.Category{})
+	db.AutoMigrate(&models.Product{}, &models.Store{}, &models.Repair{}, &models.Category{})
 
 	return nil
 }
 
 //GetAllProducts() metodu tanimlaniyor parametre almiyor ancak Product turunde bir dizi return ediyor
-func GetAllProducts() ([]model.Product, error) {
+func GetAllProducts() ([]models.Product, error) {
 	//products isimli Product turunden bir dizi tanimlaniyor
-	var products []model.Product
+	var products []models.Product
 	//Yine gorm ile database.go aciliyor
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -38,9 +38,9 @@ func GetAllProducts() ([]model.Product, error) {
 }
 
 //TODO: Edit Product Attributes
-func CreateProduct(name string, detail string, price float64, quantity int, barcode uint, store_id uint, category_id uint, entry_price float64) (model.Product, error) {
+func CreateProduct(name string, detail string, price float64, quantity int, barcode uint, store_id uint, category_id uint, entry_price float64) (models.Product, error) {
 
-	var newProduct = model.Product{Name: name, Detail: detail, Price: price, Quantity: quantity, Barcode: barcode, StoreID: store_id, CategoryID: category_id, Entry_Price: entry_price}
+	var newProduct = models.Product{Name: name, Detail: detail, Price: price, Quantity: quantity, Barcode: barcode, StoreID: store_id, CategoryID: category_id, Entry_Price: entry_price}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -52,9 +52,9 @@ func CreateProduct(name string, detail string, price float64, quantity int, barc
 }
 
 //GetAllRepairs() metodu tanimlaniyor parametre almiyor ancak Repair turunde bir dizi return ediyor
-func GetAllRepairs() ([]model.Repair, error) {
+func GetAllRepairs() ([]models.Repair, error) {
 	//repairs isimli Repair turunden bir dizi tanimlaniyor
-	var repairs []model.Repair
+	var repairs []models.Repair
 	//Yine gorm ile database.go aciliyor
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -67,9 +67,9 @@ func GetAllRepairs() ([]model.Repair, error) {
 }
 
 //TODO: Edit Repair Attributes
-func CreateRepair(name string, tel uint, problem string, status string, notes string, estimated_price float64, producer string, device_model string, color string, diagnosis string, sms bool) (model.Repair, error) {
+func CreateRepair(name string, tel uint, problem string, status string, notes string, estimated_price float64, producer string, device_model string, color string, diagnosis string, sms bool) (models.Repair, error) {
 
-	var newRepair = model.Repair{Name: name, Tel: tel, Problem: problem, Status: status, Notes: notes, Estimated_price: estimated_price, Producer: producer, Device_model: device_model, Color: color, Diagnosis: diagnosis, Sms: sms}
+	var newRepair = models.Repair{Name: name, Tel: tel, Problem: problem, Status: status, Notes: notes, Estimated_price: estimated_price, Producer: producer, Device_model: device_model, Color: color, Diagnosis: diagnosis, Sms: sms}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -81,9 +81,9 @@ func CreateRepair(name string, tel uint, problem string, status string, notes st
 }
 
 //GetAllStores() metodu tanimlaniyor parametre almiyor ancak Store turunde bir dizi return ediyor
-func GetAllStores() ([]model.Store, error) {
+func GetAllStores() ([]models.Store, error) {
 	//stores isimli Store turunden bir dizi tanimlaniyor
-	var stores []model.Store
+	var stores []models.Store
 	//Yine gorm ile database.go aciliyor
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -96,9 +96,9 @@ func GetAllStores() ([]model.Store, error) {
 }
 
 //TODO: Edit Store Attributes
-func CreateStore(name string, logo string, manager string, tel uint, mail string) (model.Store, error) {
+func CreateStore(name string, logo string, manager string, tel uint, mail string) (models.Store, error) {
 
-	var newStore = model.Store{Name: name, Logo: logo, Manager: manager, Tel: tel, Mail: mail}
+	var newStore = models.Store{Name: name, Logo: logo, Manager: manager, Tel: tel, Mail: mail}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -110,9 +110,9 @@ func CreateStore(name string, logo string, manager string, tel uint, mail string
 }
 
 //GetAllCategoryes() metodu tanimlaniyor parametre almiyor ancak Store turunde bir dizi return ediyor
-func GetAllCategoryes() ([]model.Category, error) {
+func GetAllCategoryes() ([]models.Category, error) {
 	//categories isimli Category turunden bir dizi tanimlaniyor
-	var categories []model.Category
+	var categories []models.Category
 	//Yine gorm ile database.go aciliyor
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -125,9 +125,9 @@ func GetAllCategoryes() ([]model.Category, error) {
 }
 
 //TODO: Edit Category Attributes
-func CreateCategory(category_name string, sub_category uint) (model.Category, error) {
+func CreateCategory(category_name string, sub_category uint) (models.Category, error) {
 
-	var newCategory = model.Category{Category_name: category_name, Sub_category: sub_category}
+	var newCategory = models.Category{Category_name: category_name, Sub_category: sub_category}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {

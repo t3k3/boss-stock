@@ -2,7 +2,7 @@ package controller
 
 import (
 	"boss-stock/database"
-	"boss-stock/model"
+	"boss-stock/models"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -32,7 +32,7 @@ func GetAllCategoryes(c *fiber.Ctx) error {
 func SaveCategory(c *fiber.Ctx) error {
 
 	//newCategory degiskenine database.go dosyasindaki Product turunden tanimlama yapiliyor.
-	newCategory := new(model.Category)
+	newCategory := new(models.Category)
 	//newCategory ile gelen veri BodyParser ie parse ediliyor.
 	err := c.BodyParser(newCategory)
 	if err != nil {
