@@ -16,4 +16,5 @@ type Product struct {
 	StoreID     uint    `json:"store_id"`    //StoreID Foreign Key ???
 	CategoryID  uint    `json:"category_id"` //Ürünün kaegorisi
 	Entry_Price float64 `json:"entry_price"` //Alış fiyatı
+	Tax         float64 `json:"kdv"`         //Vergi oranı
 }

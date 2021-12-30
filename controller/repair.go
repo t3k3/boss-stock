@@ -45,7 +45,7 @@ func SaveRepair(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Repair Attributes
 	//database.go dosyasindan CreateRepair() metoduna veriler parametre gecilerek cagri yapiliyor.
-	result, err := database.CreateRepair(newRepair.Name, newRepair.Tel, newRepair.Problem, newRepair.Status, newRepair.Notes, newRepair.Estimated_price, newRepair.Producer, newRepair.Device_model, newRepair.Color, newRepair.Diagnosis, newRepair.Sms)
+	result, err := database.CreateRepair(newRepair.Name, newRepair.Tel, newRepair.Problem, newRepair.Status, newRepair.Notes, newRepair.Estimated_price, newRepair.Brand, newRepair.Device_model, newRepair.Color, newRepair.Diagnosis, newRepair.Sms)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,

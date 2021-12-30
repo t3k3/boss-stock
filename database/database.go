@@ -38,9 +38,9 @@ func GetAllProducts() ([]models.Product, error) {
 }
 
 //TODO: Edit Product Attributes
-func CreateProduct(name string, detail string, price float64, quantity int, barcode uint, store_id uint, category_id uint, entry_price float64) (models.Product, error) {
+func CreateProduct(name string, detail string, price float64, quantity int, barcode uint, store_id uint, category_id uint, entry_price float64, kdv float64) (models.Product, error) {
 
-	var newProduct = models.Product{Name: name, Detail: detail, Price: price, Quantity: quantity, Barcode: barcode, StoreID: store_id, CategoryID: category_id, Entry_Price: entry_price}
+	var newProduct = models.Product{Name: name, Detail: detail, Price: price, Quantity: quantity, Barcode: barcode, StoreID: store_id, CategoryID: category_id, Entry_Price: entry_price, Tax: kdv}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -67,9 +67,9 @@ func GetAllRepairs() ([]models.Repair, error) {
 }
 
 //TODO: Edit Repair Attributes
-func CreateRepair(name string, tel uint, problem string, status string, notes string, estimated_price float64, producer string, device_model string, color string, diagnosis string, sms bool) (models.Repair, error) {
+func CreateRepair(name string, tel uint, problem string, status string, notes string, estimated_price float64, brand string, device_model string, color string, diagnosis string, sms bool) (models.Repair, error) {
 
-	var newRepair = models.Repair{Name: name, Tel: tel, Problem: problem, Status: status, Notes: notes, Estimated_price: estimated_price, Producer: producer, Device_model: device_model, Color: color, Diagnosis: diagnosis, Sms: sms}
+	var newRepair = models.Repair{Name: name, Tel: tel, Problem: problem, Status: status, Notes: notes, Estimated_price: estimated_price, Brand: brand, Device_model: device_model, Color: color, Diagnosis: diagnosis, Sms: sms}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
@@ -96,9 +96,9 @@ func GetAllStores() ([]models.Store, error) {
 }
 
 //TODO: Edit Store Attributes
-func CreateStore(name string, logo string, manager string, tel uint, mail string) (models.Store, error) {
+func CreateStore(name string, address string, city string, region string, logo string, manager string, tel uint, mail string, password string, isactive bool) (models.Store, error) {
 
-	var newStore = models.Store{Name: name, Logo: logo, Manager: manager, Tel: tel, Mail: mail}
+	var newStore = models.Store{Name: name, Address: address, City: city, Region: region, Logo: logo, Manager: manager, Tel: tel, Mail: mail, Password: password, IsActive: isactive}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {

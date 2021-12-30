@@ -45,7 +45,7 @@ func SaveStore(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Store Attributes
 	//database.go dosyasindan CreateStore() metoduna veriler parametre gecilerek cagri yapiliyor.
-	result, err := database.CreateStore(newStore.Name, newStore.Logo, newStore.Manager, newStore.Tel, newStore.Mail)
+	result, err := database.CreateStore(newStore.Name, newStore.Address, newStore.City, newStore.Region, newStore.Logo, newStore.Manager, newStore.Tel, newStore.Mail, newStore.Password, newStore.IsActive)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,

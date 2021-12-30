@@ -47,7 +47,7 @@ func SaveProduct(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Product Attributes
 	//database.go dosyasindan CreatProduct() metoduna veriler parametre gecilerek cagri yapiliyor.
-	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.StoreID, newProduct.CategoryID, newProduct.Entry_Price)
+	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.StoreID, newProduct.CategoryID, newProduct.Entry_Price, newProduct.Tax)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,
