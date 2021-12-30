@@ -2,10 +2,9 @@
 
 ## Boss Stock Inventory Management Application for Phone Stores
 
-## Telefoncular için stok takip uygulaması
+## Telefon Mağazaları için stok takip uygulaması
 
   
-
 ### Endpoints:
 
 BASE_URL : http://<ip_address>:3000/api/v1/
@@ -15,23 +14,51 @@ BASE_PORT : 3000
 
 //TODO: Edit Endpoints
 
-### Ürün Listele
+### Ürün Listele (GET)
 `BASE_URL:3000/api/v1/product`
-### Ürün Ekle
+### Ürün Listele Single (GET)
+`BASE_URL:3000/api/v1/product/:id`
+### Ürün Listele by Barkod Number (GET)
+`BASE_URL:3000/api/v1/product/barcode/:id`
+### Ürün Listele by Kategori ID (GET)
+`BASE_URL:3000/api/v1/product/category/:id`
+### Ürün Sil (DELETE)
+`BASE_URL:3000/api/v1/product/:id`
+### Ürün Ekle (POST)
 `BASE_URL:3000/api/v1/product/new`
 
 
-### Tamirdeki Cihazları Listele
-`BASE_URL:3000/api/v1/repair"`
-### Tamir İçin Cihaz Ekle
+### Tamirdeki Cihaz Listele (GET)
+`BASE_URL:3000/api/v1/repair`
+### Tamirdeki Cihaz Listele Single (GET)
+`BASE_URL:3000/api/v1/repair/:id`
+### Tamirdeki Cihaz Listele by Cihaz Durumu ID (GET)
+`BASE_URL:3000/api/v1/repair/status/:id`
+### Tamirdeki Cihaz Sil (DELETE)
+`BASE_URL:3000/api/v1/repair/:id`
+### Tamirdeki Cihaz Ekle (POST)
 `BASE_URL:3000/api/v1/repair/new`
 
-### Mevcut Mağazaları Getir
+
+### Mağaza Listele (GET)
 `BASE_URL:3000/api/v1/store`
-### Yeni Mağaza Ekle
+### Mağaza Listele Single (GET)
+`BASE_URL:3000/api/v1/store/:id`
+### Mağaza Sil (DELETE)
+`BASE_URL:3000/api/v1/store/:id`
+### Mağaza Ekle (POST)
 `BASE_URL:3000/api/v1/store/new`
-  
-  
+
+
+### Kategori Listele (GET)
+`BASE_URL:3000/api/v1/category`
+### Kategori Listele Single (GET)
+`BASE_URL:3000/api/v1/category/:id`
+### Kategori Sil (DELETE)
+`BASE_URL:3000/api/v1/category/:id`
+### Kategori Ekle (POST)
+`BASE_URL:3000/api/v1/category/new`
+
 
   
 
@@ -61,36 +88,3 @@ Repo clone sonrası aşağıdakileri çalıştır.
 
 
 
-### NOTLAR
-gorm.Find 
-gorm.Model
-
-ya da
-
-gorm.Where
-gorm.Model
-
-peşpeşe çağırılarak update yapılabilir
-
-örnek:
-```
-var burki Southwind.Employee
-db.Find(&burki, "ID=?", 1) //Önce
-db.Model(&burki).Update("LastName", "Selim Senyurt")
-WriteToScreen(burki)
-````
-
-```
-var buffon Southwind.Employee
-
-db.Model(&buffon).Where("ID=?", 2).Updates(map[string]interface{}{"FirstName": "Cianluici", "LastName": "Buffon"})
-db.First(&buffon, 2) //Direkt primary key üstünden(varsayılan olarak ID) arama yapar
-WriteToScreen(buffon)
-} else {
-fmt.Println(err.Error())
-}
-```
-
-
-
-PULL

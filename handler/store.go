@@ -28,6 +28,58 @@ func GetAllStores(c *fiber.Ctx) error {
 	})
 }
 
+//Verilen ID parametresine göre tek ürün listeleyen fonksiyon
+func GetStore(c *fiber.Ctx) error {
+
+	//Gelen parametre id değişkenine alınıyor (string türünde)
+	id := c.Params("id")
+
+	//database.go dosyasindan GetStore() fonksiyonu cagiriliyor id parametresi argüman gönderiliyor.
+	result, err := database.GetStore(id)
+	if err != nil {
+		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
+		//database.go dosyasindan GetAllStore() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//JSON olarak donduruyor
+		return c.Status(500).JSON(&fiber.Map{
+			"success": false,
+			"message": err,
+			"data":    nil,
+		})
+	}
+	//Hata dondurmedigi durumda 200 yanitiyla yine JSON veri donduruluyor(Burada son eklenen urun donuyor)
+	return c.Status(200).JSON(&fiber.Map{
+		"success": true,
+		"message": "",
+		"data":    result,
+	})
+}
+
+//Verilen ID parametresine göre tek ürün listeleyen fonksiyon
+func DeleteStore(c *fiber.Ctx) error {
+
+	//Gelen parametre id değişkenine alınıyor (string türünde)
+	id := c.Params("id")
+
+	//database.go dosyasindan GetStore() fonksiyonu cagiriliyor id parametresi argüman gönderiliyor.
+	result, err := database.DeleteStore(id)
+	if err != nil {
+		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
+		//database.go dosyasindan GetAllStore() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//JSON olarak donduruyor
+		return c.Status(500).JSON(&fiber.Map{
+			"success": false,
+			"message": err,
+			"data":    nil,
+		})
+	}
+	//Hata dondurmedigi durumda 200 yanitiyla yine JSON veri donduruluyor(Burada son eklenen urun donuyor)
+	return c.Status(200).JSON(&fiber.Map{
+		"success": true,
+		"message": "",
+		"data":    result,
+	})
+}
+
 //Burada SaveStores() metodu tanimlaniyor
 func SaveStore(c *fiber.Ctx) error {
 

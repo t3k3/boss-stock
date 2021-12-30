@@ -20,12 +20,17 @@ func status(c *fiber.Ctx) error {
 //setupRoutes fonksiyonunu implemente ediyoruz, icinde route'larimizi tanimliyoruz.
 func setupRoutes(app *fiber.App) {
 
-	//Eger / dzinine istek gelirse status fonksiyonunu response et.
+	//Handlers
+
 	app.Get("/", status)
 
 	app.Get("/api/v1/product", handler.GetAllProducts)
 
 	app.Get("/api/v1/product/:id", handler.GetProduct)
+
+	app.Get("/api/v1/product/category/:id", handler.GetProductByCategoryID)
+
+	app.Get("/api/v1/product/barcode/:id", handler.GetProductByBarcode)
 
 	app.Delete("/api/v1/product/:id", handler.DeleteProduct)
 
@@ -33,13 +38,25 @@ func setupRoutes(app *fiber.App) {
 
 	app.Get("/api/v1/repair", handler.GetAllRepairs)
 
+	app.Get("/api/v1/repair/:id", handler.GetRepair)
+
+	app.Delete("/api/v1/repair/:id", handler.DeleteRepair)
+
 	app.Post("/api/v1/repair/new", handler.SaveRepair)
 
 	app.Get("/api/v1/store", handler.GetAllStores)
 
+	app.Get("/api/v1/store/:id", handler.GetStore)
+
+	app.Delete("/api/v1/store/:id", handler.DeleteStore)
+
 	app.Post("/api/v1/store/new", handler.SaveStore)
 
 	app.Get("/api/v1/category", handler.GetAllCategoryes)
+
+	app.Get("/api/v1/category/:id", handler.GetCategory)
+
+	app.Delete("/api/v1/category/:id", handler.DeleteCategory)
 
 	app.Post("/api/v1/category/new", handler.SaveCategory)
 

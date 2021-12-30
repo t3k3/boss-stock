@@ -57,6 +57,58 @@ func GetProduct(c *fiber.Ctx) error {
 }
 
 //Verilen ID parametresine göre tek ürün listeleyen fonksiyon
+func GetProductByCategoryID(c *fiber.Ctx) error {
+
+	//Gelen parametre id değişkenine alınıyor (string türünde)
+	id := c.Params("id")
+
+	//database.go dosyasindan GetProduct() fonksiyonu cagiriliyor id parametresi argüman gönderiliyor.
+	result, err := database.GetProductByCategoryID(id)
+	if err != nil {
+		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
+		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//JSON olarak donduruyor
+		return c.Status(500).JSON(&fiber.Map{
+			"success": false,
+			"message": err,
+			"data":    nil,
+		})
+	}
+	//Hata dondurmedigi durumda 200 yanitiyla yine JSON veri donduruluyor(Burada son eklenen urun donuyor)
+	return c.Status(200).JSON(&fiber.Map{
+		"success": true,
+		"message": "",
+		"data":    result,
+	})
+}
+
+//Verilen ID parametresine göre tek ürün listeleyen fonksiyon
+func GetProductByBarcode(c *fiber.Ctx) error {
+
+	//Gelen parametre id değişkenine alınıyor (string türünde)
+	id := c.Params("id")
+
+	//database.go dosyasindan GetProduct() fonksiyonu cagiriliyor id parametresi argüman gönderiliyor.
+	result, err := database.GetProductByBarcode(id)
+	if err != nil {
+		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
+		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//JSON olarak donduruyor
+		return c.Status(500).JSON(&fiber.Map{
+			"success": false,
+			"message": err,
+			"data":    nil,
+		})
+	}
+	//Hata dondurmedigi durumda 200 yanitiyla yine JSON veri donduruluyor(Burada son eklenen urun donuyor)
+	return c.Status(200).JSON(&fiber.Map{
+		"success": true,
+		"message": "",
+		"data":    result,
+	})
+}
+
+//Verilen ID parametresine göre tek ürün listeleyen fonksiyon
 func DeleteProduct(c *fiber.Ctx) error {
 
 	//Gelen parametre id değişkenine alınıyor (string türünde)
@@ -66,7 +118,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	result, err := database.DeleteProduct(id)
 	if err != nil {
 		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
-		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini ve err nesnesini
+		//database.go dosyasindan GetAllProduct() fonksiyonu hata dondururse 500 yantini ve err nesnesini
 		//JSON olarak donduruyor
 		return c.Status(500).JSON(&fiber.Map{
 			"success": false,

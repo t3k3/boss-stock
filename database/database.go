@@ -54,6 +54,40 @@ func GetProduct(id string) ([]models.Product, error) {
 }
 
 //Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func GetProductByCategoryID(id string) ([]models.Product, error) {
+	//product isimli Product turunden bir instance tanimlaniyor
+	var product []models.Product
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return product, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz product dizisi arguman geciliyor.
+	//db.Where() kullanılıyor. Bu şekilde id değeriyle db içindeki category_id karşılaştırılıyor.
+
+	//category_id == id olan verileri getir.
+	db.Where("category_id == ?", id).Find(&product)
+	return product, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func GetProductByBarcode(id string) ([]models.Product, error) {
+	//product isimli Product turunden bir instance tanimlaniyor
+	var product []models.Product
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return product, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz product dizisi arguman geciliyor.
+	//db.Where() kullanılıyor. Bu şekilde id değeriyle db içindeki category_id karşılaştırılıyor.
+
+	//category_id == id olan verileri getir.
+	db.Where("barcode == ?", id).Find(&product)
+	return product, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
 func DeleteProduct(id string) ([]models.Product, error) {
 	//product isimli Product turunden bir instance tanimlaniyor
 	var product []models.Product
@@ -98,6 +132,38 @@ func GetAllRepairs() ([]models.Repair, error) {
 	return repairs, nil
 }
 
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func GetRepair(id string) ([]models.Repair, error) {
+	//repair isimli Repair turunden bir instance tanimlaniyor
+	var repair []models.Repair
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return repair, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz repair dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Find(&repair, id)
+
+	return repair, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func DeleteRepair(id string) ([]models.Repair, error) {
+	//repair isimli Repair turunden bir instance tanimlaniyor
+	var repair []models.Repair
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return repair, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz repair dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Delete(&repair, id)
+
+	return repair, nil
+}
+
 //TODO: Edit Repair Attributes
 func CreateRepair(name string, tel uint, problem string, status string, notes string, estimated_price float64, brand string, device_model string, color string, diagnosis string, sms bool) (models.Repair, error) {
 
@@ -127,6 +193,38 @@ func GetAllStores() ([]models.Store, error) {
 	return stores, nil
 }
 
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func GetStore(id string) ([]models.Store, error) {
+	//store isimli Store turunden bir instance tanimlaniyor
+	var store []models.Store
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return store, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz store dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Find(&store, id)
+
+	return store, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func DeleteStore(id string) ([]models.Store, error) {
+	//store isimli Store turunden bir instance tanimlaniyor
+	var store []models.Store
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return store, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz store dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Delete(&store, id)
+
+	return store, nil
+}
+
 //TODO: Edit Store Attributes
 func CreateStore(name string, address string, city string, region string, logo string, manager string, tel uint, mail string, password string, isactive bool) (models.Store, error) {
 
@@ -154,6 +252,38 @@ func GetAllCategoryes() ([]models.Category, error) {
 	db.Find(&categories)
 
 	return categories, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func GetCategory(id string) ([]models.Category, error) {
+	//category isimli Category turunden bir instance tanimlaniyor
+	var category []models.Category
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return category, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz category dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Find(&category, id)
+
+	return category, nil
+}
+
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func DeleteCategory(id string) ([]models.Category, error) {
+	//category isimli Category turunden bir instance tanimlaniyor
+	var category []models.Category
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return category, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz category dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Delete(&category, id)
+
+	return category, nil
 }
 
 //TODO: Edit Category Attributes
