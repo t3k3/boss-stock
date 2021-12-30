@@ -1,4 +1,4 @@
-package controller
+package handler
 
 import (
 	"boss-stock/database"

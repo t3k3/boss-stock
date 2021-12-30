@@ -3,8 +3,8 @@ package main
 //Kullanacagimiz paketler projeye ekleniyor
 import (
 	//Bu iki paket projemizdeki dizinler ve ayni isimli .go dosyalaridir.
-	"boss-stock/controller"
 	"boss-stock/database"
+	"boss-stock/handler"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -23,21 +23,23 @@ func setupRoutes(app *fiber.App) {
 	//Eger / dzinine istek gelirse status fonksiyonunu response et.
 	app.Get("/", status)
 
-	app.Get("/api/v1/product", controller.GetAllProducts)
+	app.Get("/api/v1/product", handler.GetAllProducts)
 
-	app.Post("/api/v1/product/new", controller.SaveProduct)
+	app.Get("/api/v1/product/:id", handler.GetProduct)
 
-	app.Get("/api/v1/repair", controller.GetAllRepairs)
+	app.Post("/api/v1/product/new", handler.SaveProduct)
 
-	app.Post("/api/v1/repair/new", controller.SaveRepair)
+	app.Get("/api/v1/repair", handler.GetAllRepairs)
 
-	app.Get("/api/v1/store", controller.GetAllStores)
+	app.Post("/api/v1/repair/new", handler.SaveRepair)
 
-	app.Post("/api/v1/store/new", controller.SaveStore)
+	app.Get("/api/v1/store", handler.GetAllStores)
 
-	app.Get("/api/v1/category", controller.GetAllCategoryes)
+	app.Post("/api/v1/store/new", handler.SaveStore)
 
-	app.Post("/api/v1/category/new", controller.SaveCategory)
+	app.Get("/api/v1/category", handler.GetAllCategoryes)
+
+	app.Post("/api/v1/category/new", handler.SaveCategory)
 
 	//Eğer /dashboard endpointe istek gelirse web sayfasından ram, istekler, kullanımlar vs monitör edilebilir.
 	app.Get("/dashboard", monitor.New())
