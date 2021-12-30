@@ -53,6 +53,22 @@ func GetProduct(id string) ([]models.Product, error) {
 	return product, nil
 }
 
+//Yalnızca bir ürün çeken fonksiyona id bilgisini geçiyoruz.
+func DeleteProduct(id string) ([]models.Product, error) {
+	//product isimli Product turunden bir instance tanimlaniyor
+	var product []models.Product
+	//Yine gorm ile database.go aciliyor
+	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
+	if err != nil {
+		return product, err
+	}
+	//Burada AutoMigrate() yerine Find() metodu calisiyor ve olusturdugumuz product dizisi arguman geciliyor.
+	//ikinci parametre olarak id veriliyor. Bu şekilde id değeriyle db içindeki id karşılaştırılıyor.
+	db.Delete(&product, id)
+
+	return product, nil
+}
+
 //TODO: Edit Product Attributes
 func CreateProduct(name string, detail string, price float64, quantity int, barcode uint, store_id uint, category_id uint, entry_price float64, kdv float64) (models.Product, error) {
 
