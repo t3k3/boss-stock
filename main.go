@@ -24,11 +24,16 @@ func setupRoutes(app *fiber.App) {
 
 	app.Get("/", status)
 
+	app.Get("/api/v1/order", handler.GetAllOrders)
+
+	app.Post("/api/v1/order/new", handler.SaveOrder)
+
 	app.Get("/api/v1/product", handler.GetAllProducts)
 
 	app.Get("/api/v1/product/:id", handler.GetProduct)
 
-	app.Get("/api/v1/product/category/:id", handler.GetProductByCategoryID)
+	//TODO category by ID olarak düzenlenecek
+	app.Get("/api/v1/product/category/:name", handler.GetProductByCategoryName)
 
 	app.Get("/api/v1/product/barcode/:id", handler.GetProductByBarcode)
 

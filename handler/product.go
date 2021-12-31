@@ -57,13 +57,13 @@ func GetProduct(c *fiber.Ctx) error {
 }
 
 //Verilen ID parametresine göre tek ürün listeleyen fonksiyon
-func GetProductByCategoryID(c *fiber.Ctx) error {
+func GetProductByCategoryName(c *fiber.Ctx) error {
 
 	//Gelen parametre id değişkenine alınıyor (string türünde)
-	id := c.Params("id")
+	name := c.Params("name")
 
 	//database.go dosyasindan GetProduct() fonksiyonu cagiriliyor id parametresi argüman gönderiliyor.
-	result, err := database.GetProductByCategoryID(id)
+	result, err := database.GetProductByCategoryName(name)
 	if err != nil {
 		//Eğer err nil'e eşit değilse yani err nesnesi doluysa
 		//database.go dosyasindan GetAllProducts() fonksiyonu hata dondururse 500 yantini ve err nesnesini
@@ -151,7 +151,7 @@ func SaveProduct(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Product Attributes
 	//database.go dosyasindan CreatProduct() metoduna veriler parametre gecilerek cagri yapiliyor.
-	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.StoreID, newProduct.CategoryID, newProduct.Entry_Price, newProduct.Tax)
+	result, err := database.CreateProduct(newProduct.Name, newProduct.Detail, newProduct.Price, newProduct.Quantity, newProduct.Barcode, newProduct.StoreID, newProduct.CategoryName, newProduct.Entry_Price, newProduct.Tax)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{
 			"success": false,
