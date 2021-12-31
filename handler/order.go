@@ -45,6 +45,7 @@ func SaveOrder(c *fiber.Ctx) error {
 	}
 	//TODO: Edit Order Attributes
 	//database.go dosyasindan CreateOrder() metoduna veriler parametre gecilerek cagri yapiliyor.
+
 	result, err := database.CreateOrder(newOrder.OrderProducts, newOrder.TotalPrice, newOrder.RealPrice, newOrder.PaymentMethod, newOrder.SalesType)
 	if err != nil {
 		c.Status(400).JSON(&fiber.Map{

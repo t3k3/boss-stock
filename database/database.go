@@ -40,14 +40,15 @@ func GetAllOrders() ([]models.Order, error) {
 }
 
 //TODO: Edit Order Attributes
-func CreateOrder(orders string, total_price float64, real_price float64, payment_method uint, sales_type uint) (models.Order, error) {
+func CreateOrder(orders_products []*models.Product, total_price float64, real_price float64, payment_method uint, sales_type uint) (models.Order, error) {
 
-	var newOrder = models.Order{OrderProducts: orders, TotalPrice: total_price, RealPrice: real_price, PaymentMethod: payment_method, SalesType: sales_type}
+	var newOrder = models.Order{OrderProducts: orders_products, TotalPrice: total_price, RealPrice: real_price, PaymentMethod: payment_method, SalesType: sales_type}
 
 	db, err := gorm.Open(sqlite.Open("bossdb.db"), &gorm.Config{})
 	if err != nil {
 		return newOrder, err
 	}
+
 	db.Create(&newOrder)
 
 	return newOrder, nil
